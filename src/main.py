@@ -1,12 +1,12 @@
 from random import randint
 
 
-class Population:
+class Population():
     people = []
     def load_people(self):
         self.people = [[2,4,6,8], [4,5,8,12], [6,7,10,12], [14,2,45,33], [11,7,4,1]]
 
-class Fitness:
+class Fitness():
     functions = []
     
     def add(self,a,b):
@@ -25,7 +25,7 @@ class Fitness:
                 print(a)
             #print [fun(person[0],person[1]) for fun in self.functions]
         
-class Run:
+class Run():
     
     def __init__(self, mutation_factor=0.7, crossover_ratio=0.4, iterations=10)
         self.mutation_factor = mutation_factor
@@ -73,6 +73,9 @@ class Run:
         people = Population()
         people.load_people()
         
+        fit = Fitness()
+        fit.start()
+        
         for iteration in self.iterations:
             next_generation = []
 
@@ -81,8 +84,7 @@ class Run:
                 new_person = operate(people, current_index, indexes)
                 next_generation.append(choose_best(person, new_person))
         
-        fit = Fitness()
-        fit.start()
+        
         
         fit.evaluation(people.people)
         
